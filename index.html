@@ -104,9 +104,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
       <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline controls 
-       poster="./static/images/teaser_start_frame.jpg" 
-       height="100%" class="physomni-player">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
         <source src="./static/videos/teaser.mp4" type="video/mp4">
       </video>
 
@@ -116,9 +114,6 @@
     </div>
   </div>
 </section>
-
-
-
 
 <section class="section" style="background-color: #f5f5f5; border-radius: 10px; margin: 2rem 0;">
   <div class="container is-max-desktop">
@@ -141,10 +136,6 @@
     </div>
   </div>
 </section>
-
-
-
-
 
 
 <section class="section">
@@ -217,600 +208,641 @@
 
 
 
-    <!-- Comparison Section -->
-    <section class="section">
-      <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Qualitative Comparisons</h2>
-        <div class="content has-text-justified">
-          <p>
-            Comparison with state-of-the-art video generation models. 
-            The input includes an image, a motion prompt, and a text prompt.
-          </p>
+<!-- Comparison Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Comparisons</h2>
+    <div class="content has-text-justified">
+      <p>
+        Comparison with state-of-the-art video generation models. 
+        The input includes an image, a motion prompt, and a text prompt.
+      </p>
+    </div>
+
+    <!-- Example 1 Start -->
+    <div class="box comparison-group" style="background-color: #f5f5f5;">
+      <!-- Prompt Display -->
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <span class="tag is-dark is-medium">Prompt</span>
+        <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
+          "Initially, the dominoes are stationary. A row of white dominoes falls from left to right, each domino tilting forward and striking the next, as if a propagating force is transmitted along the chain of dominoes, causing each domino to rotate around its base until it falls completely flat. The viewing perspective is fixed."
+        </span>
+      </div>
+
+      <!-- Grid Layout: 2 Rows, 4 Columns -->
+      <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
+        
+        <!-- 1. Input Image -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Input Image</span>
+            <img src="./static/images/rendered_domino_1.00_50_4.jpg" alt="Input">
+          </div>
         </div>
 
-        <!-- Example 1 Start -->
-        <div class="box comparison-group" style="background-color: #f5f5f5;">
-          <!-- Prompt Display -->
-          <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <span class="tag is-dark is-medium">Prompt</span>
-            <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
-              "Initially, the dominoes are stationary. A row of white dominoes falls from left to right, each domino tilting forward and striking the next, as if a propagating force is transmitted along the chain of dominoes, causing each domino to rotate around its base until it falls completely flat. The viewing perspective is fixed."
-            </span>
-          </div>
-
-          <!-- Grid Layout: 2 Rows, 4 Columns -->
-          <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
+        <!-- 2. Ours (PhysOmni) -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label is-ours">Ours</span>
             
-            <!-- 1. Input Image -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Input Image</span>
-                <img src="./static/images/rendered_domino_1.00_50_4.jpg" alt="Input">
-              </div>
-            </div>
-
-            <!-- 2. Ours (PhysOmni) -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label is-ours">Ours</span>
-                
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
-                </video>
-
-              </div>
-            </div>
-
-            <!-- 3. Baseline 1 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">CogVideoX1.5</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 4. Baseline 2 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">PhysCtrl</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/physctrl_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 5. Baseline 3 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Sora2-pro</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 6. Baseline 4 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Veo3.1</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/veo_3_1_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 7. Baseline 5 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-5B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 8. Baseline 6 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-A14B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_14b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
+            </video>
 
           </div>
         </div>
-        <!-- Example 1 End -->
 
-
-        <!-- Example 2 Start -->
-        <div class="box comparison-group" style="background-color: #f5f5f5;">
-          <!-- Prompt Display -->
-          <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <span class="tag is-dark is-medium">Prompt</span>
-            <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
-              "Initially, the three balls in the scene were stationary. Then, they were simultaneously subjected to a horizontal force directed towards the bucket, causing them to roll across the table, strike the bucket, and then fall to the ground."
-            </span>
-          </div>
-
-          <!-- Grid Layout: 2 Rows, 4 Columns -->
-          <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
-            
-            <!-- 1. Input Image -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Input Image</span>
-                <img src="./static/images/rendered_scene_10_1.00_50_1.jpg" alt="Input">
-              </div>
-            </div>
-
-            <!-- 2. Ours (PhysOmni) -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label is-ours">Ours</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/test_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 3. Baseline 1 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">CogVideoX1.5</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 4. Baseline 2 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">PhysCtrl</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/physctrl_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 5. Baseline 3 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Sora2-pro</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 6. Baseline 4 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Veo3.1</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/veo_3_1_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 7. Baseline 5 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-5B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 8. Baseline 6 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-A14B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_14b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
+        <!-- 3. Baseline 1 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">CogVideoX1.5</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
-        <!-- Example 2 End -->
 
-
-
-        <!-- Example 3 Start -->
-        <div class="box comparison-group" style="background-color: #f5f5f5;">
-          <!-- Prompt Display -->
-          <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <span class="tag is-dark is-medium">Prompt</span>
-            <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
-              "Initially, the two ceramic bowls were stationary. Then, the smaller bowl was smoothly lifted upwards, moved to the left, and then, due to gravity, dropped onto the larger bowl, eventually stacking inside it. The camera angle shifted slightly downwards."
-            </span>
-          </div>
-
-          <!-- Grid Layout: 2 Rows, 4 Columns -->
-          <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
-            
-            <!-- 1. Input Image -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Input Image</span>
-                <img src="./static/images/rendered_bowl_1.00_10_0.jpg" alt="Input">
-              </div>
-            </div>
-
-            <!-- 2. Ours (PhysOmni) -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label is-ours">Ours</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 3. Baseline 1 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">CogVideoX1.5</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 4. Baseline 2 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">PhysCtrl</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/physctrl_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 5. Baseline 3 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Sora2-pro</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/sora_2_pro_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 6. Baseline 4 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Veo3.1</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/veo_3_1_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 7. Baseline 5 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-5B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 8. Baseline 6 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-A14B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_14b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
+        <!-- 4. Baseline 2 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">PhysCtrl</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/physctrl_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
-        <!-- Example 3 End -->
 
-
-
-        <!-- Example 4 Start -->
-        <div class="box comparison-group" style="background-color: #f5f5f5;">
-          <!-- Prompt Display -->
-          <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <span class="tag is-dark is-medium">Prompt</span>
-            <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
-              "Initially, the teddy bear was at rest with zero initial velocity. Subsequently, due to a force applied from the right, the teddy bear began to move and eventually fell off the edge of the chair. The viewing perspective switches from the front to the right side."
-            </span>
-          </div>
-
-          <!-- Grid Layout: 2 Rows, 4 Columns -->
-          <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
-            
-            <!-- 1. Input Image -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Input Image</span>
-                <img src="./static/images/rendered_chair_toy_05.jpg" alt="Input">
-              </div>
-            </div>
-
-            <!-- 2. Ours (PhysOmni) -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label is-ours">Ours</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 3. Baseline 1 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">CogVideoX1.5</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 4. Baseline 2 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">PhysCtrl</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/physctrl_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 5. Baseline 3 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Sora2-pro</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/sora_2_pro_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 6. Baseline 4 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Veo3.1</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/veo_3_1_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 7. Baseline 5 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-5B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 8. Baseline 6 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-A14B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_14b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
+        <!-- 5. Baseline 3 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Sora2-pro</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
-        <!-- Example 4 End -->
 
-
-
-        <!-- Example 5 Start -->
-        <div class="box comparison-group" style="background-color: #f5f5f5;">
-          <!-- Prompt Display -->
-          <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <span class="tag is-dark is-medium">Prompt</span>
-            <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
-              "Initially, all the whales were stationary; the blue whale was first subjected to a force pushing it towards the upper right, and the gray shark was subjected to an upward force. Eventually, the gray shark plush toy was knocked out of view. The camera perspective remained unchanged throughout the entire process."
-            </span>
-          </div>
-
-          <!-- Grid Layout: 2 Rows, 4 Columns -->
-          <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
-            
-            <!-- 1. Input Image -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Input Image</span>
-                <img src="./static/images/rendered_whale_shark_1.00_25_3.jpg" alt="Input">
-              </div>
-            </div>
-
-            <!-- 2. Ours (PhysOmni) -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label is-ours">Ours</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 3. Baseline 1 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">CogVideoX1.5</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 4. Baseline 2 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">PhysCtrl</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/physctrl_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 5. Baseline 3 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Sora2-pro</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 6. Baseline 4 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Veo3.1</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/veo_3_1_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 7. Baseline 5 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-5B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 8. Baseline 6 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-A14B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_14b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
+        <!-- 6. Baseline 4 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Veo3.1</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/veo_3_1_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
-        <!-- Example 5 End -->
 
-
-
-        <!-- Example 6 Start -->
-        <div class="box comparison-group" style="background-color: #f5f5f5;">
-          <!-- Prompt Display -->
-          <div class="has-text-centered" style="margin-bottom: 1rem;">
-            <span class="tag is-dark is-medium">Prompt</span>
-            <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
-              "Initially, all three oranges were stationary on a flat surface. Their texture was somewhat like jelly. Subsequently, each of the three oranges was subjected to an upward force, causing them to move, and eventually fall. The camera perspective remained unchanged throughout the entire process."
-            </span>
-          </div>
-
-          <!-- Grid Layout: 2 Rows, 4 Columns -->
-          <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
-            
-            <!-- 1. Input Image -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Input Image</span>
-                <img src="./static/images/rendered_orange_1.00_5_2.jpg" alt="Input">
-              </div>
-            </div>
-
-            <!-- 2. Ours (PhysOmni) -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label is-ours">Ours</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 3. Baseline 1 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">CogVideoX1.5</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 4. Baseline 2 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">PhysCtrl</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/physctrl_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 5. Baseline 3 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Sora2-pro</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 6. Baseline 4 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Veo3.1</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/veo_3_1_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 7. Baseline 5 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-5B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <!-- 8. Baseline 6 -->
-            <div class="column is-3-desktop is-6-mobile">
-              <div class="compare-item">
-                <span class="compare-label">Wan2.2-A14B</span>
-                <video poster="" autoplay muted playsinline>
-                  <source src="./static/videos/wan_14b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
+        <!-- 7. Baseline 5 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-5B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
-        <!-- Example 6 End -->
+
+        <!-- 8. Baseline 6 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-A14B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_14b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
 
       </div>
-    </section>
+    </div>
+    <!-- Example 1 End -->
+
+
+    <!-- Example 2 Start -->
+    <div class="box comparison-group" style="background-color: #f5f5f5;">
+      <!-- Prompt Display -->
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <span class="tag is-dark is-medium">Prompt</span>
+        <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
+          "Initially, the three balls in the scene were stationary. Then, they were simultaneously subjected to a horizontal force directed towards the bucket, causing them to roll across the table, strike the bucket, and then fall to the ground."
+        </span>
+      </div>
+
+      <!-- Grid Layout: 2 Rows, 4 Columns -->
+      <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
+        
+        <!-- 1. Input Image -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Input Image</span>
+            <img src="./static/images/rendered_scene_10_1.00_50_1.jpg" alt="Input">
+          </div>
+        </div>
+
+        <!-- 2. Ours (PhysOmni) -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label is-ours">Ours</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/test_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 3. Baseline 1 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">CogVideoX1.5</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 4. Baseline 2 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">PhysCtrl</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/physctrl_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 5. Baseline 3 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Sora2-pro</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 6. Baseline 4 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Veo3.1</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/veo_3_1_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 7. Baseline 5 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-5B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 8. Baseline 6 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-A14B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_14b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Example 2 End -->
+
+
+
+    <!-- Example 3 Start -->
+    <div class="box comparison-group" style="background-color: #f5f5f5;">
+      <!-- Prompt Display -->
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <span class="tag is-dark is-medium">Prompt</span>
+        <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
+          "Initially, the two ceramic bowls were stationary. Then, the smaller bowl was smoothly lifted upwards, moved to the left, and then, due to gravity, dropped onto the larger bowl, eventually stacking inside it. The camera angle shifted slightly downwards."
+        </span>
+      </div>
+
+      <!-- Grid Layout: 2 Rows, 4 Columns -->
+      <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
+        
+        <!-- 1. Input Image -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Input Image</span>
+            <img src="./static/images/rendered_bowl_1.00_10_0.jpg" alt="Input">
+          </div>
+        </div>
+
+        <!-- 2. Ours (PhysOmni) -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label is-ours">Ours</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 3. Baseline 1 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">CogVideoX1.5</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 4. Baseline 2 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">PhysCtrl</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/physctrl_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 5. Baseline 3 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Sora2-pro</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/sora_2_pro_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 6. Baseline 4 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Veo3.1</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/veo_3_1_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 7. Baseline 5 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-5B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 8. Baseline 6 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-A14B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_14b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Example 3 End -->
+
+
+
+    <!-- Example 4 Start -->
+    <div class="box comparison-group" style="background-color: #f5f5f5;">
+      <!-- Prompt Display -->
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <span class="tag is-dark is-medium">Prompt</span>
+        <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
+          "Initially, the teddy bear was at rest with zero initial velocity. Subsequently, due to a force applied from the right, the teddy bear began to move and eventually fell off the edge of the chair. The viewing perspective switches from the front to the right side."
+        </span>
+      </div>
+
+      <!-- Grid Layout: 2 Rows, 4 Columns -->
+      <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
+        
+        <!-- 1. Input Image -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Input Image</span>
+            <img src="./static/images/rendered_chair_toy_05.jpg" alt="Input">
+          </div>
+        </div>
+
+        <!-- 2. Ours (PhysOmni) -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label is-ours">Ours</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 3. Baseline 1 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">CogVideoX1.5</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 4. Baseline 2 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">PhysCtrl</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/physctrl_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 5. Baseline 3 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Sora2-pro</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/sora_2_pro_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 6. Baseline 4 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Veo3.1</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/veo_3_1_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 7. Baseline 5 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-5B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 8. Baseline 6 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-A14B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_14b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Example 4 End -->
+
+
+
+    <!-- Example 5 Start -->
+    <div class="box comparison-group" style="background-color: #f5f5f5;">
+      <!-- Prompt Display -->
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <span class="tag is-dark is-medium">Prompt</span>
+        <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
+          "Initially, all the whales were stationary; the blue whale was first subjected to a force pushing it towards the upper right, and the gray shark was subjected to an upward force. Eventually, the gray shark plush toy was knocked out of view. The camera perspective remained unchanged throughout the entire process."
+        </span>
+      </div>
+
+      <!-- Grid Layout: 2 Rows, 4 Columns -->
+      <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
+        
+        <!-- 1. Input Image -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Input Image</span>
+            <img src="./static/images/rendered_whale_shark_1.00_25_3.jpg" alt="Input">
+          </div>
+        </div>
+
+        <!-- 2. Ours (PhysOmni) -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label is-ours">Ours</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 3. Baseline 1 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">CogVideoX1.5</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 4. Baseline 2 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">PhysCtrl</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/physctrl_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 5. Baseline 3 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Sora2-pro</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 6. Baseline 4 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Veo3.1</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/veo_3_1_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 7. Baseline 5 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-5B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 8. Baseline 6 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-A14B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_14b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Example 5 End -->
+
+
+
+    <!-- Example 6 Start -->
+    <div class="box comparison-group" style="background-color: #f5f5f5;">
+      <!-- Prompt Display -->
+      <div class="has-text-centered" style="margin-bottom: 1rem;">
+        <span class="tag is-dark is-medium">Prompt</span>
+        <span class="is-size-5" style="font-family: 'Google Sans', sans-serif; margin-left: 0.5rem;">
+          "Initially, all three oranges were stationary on a flat surface. Their texture was somewhat like jelly. Subsequently, each of the three oranges was subjected to an upward force, causing them to move, and eventually fall. The camera perspective remained unchanged throughout the entire process."
+        </span>
+      </div>
+
+      <!-- Grid Layout: 2 Rows, 4 Columns -->
+      <div class="columns is-multiline is-mobile is-centered is-gapless-mobile">
+        
+        <!-- 1. Input Image -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Input Image</span>
+            <img src="./static/images/rendered_orange_1.00_5_2.jpg" alt="Input">
+          </div>
+        </div>
+
+        <!-- 2. Ours (PhysOmni) -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label is-ours">Ours</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 3. Baseline 1 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">CogVideoX1.5</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 4. Baseline 2 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">PhysCtrl</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/physctrl_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 5. Baseline 3 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Sora2-pro</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/sora_2_pro_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 6. Baseline 4 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Veo3.1</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/veo_3_1_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 7. Baseline 5 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-5B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- 8. Baseline 6 -->
+        <div class="column is-3-desktop is-6-mobile">
+          <div class="compare-item">
+            <span class="compare-label">Wan2.2-A14B</span>
+            <video poster="" autoplay muted playsinline>
+              <source src="./static/videos/wan_14b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Example 6 End -->
+
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!--/  perspective alignment. -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 3rem;">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Perspective Alignment</h2>
+        <div class="hero-body" style="padding-top: 0rem;">
+          <video id="issues" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/pa.mp4" type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            <strong>Perspective alignment</strong>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <!--/  perspective alignment. -->
+
+    <!--/  Camera motion and Viewpoint variation. -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 3rem;">
+      <div class="column is-max-desktop">
+        <h2 class="title is-3">Camera motion and Viewpoint variation</h2>
+        <div class="hero-body" style="padding-top: 0rem;">
+          <video id="issues" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/222.mp4" type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            <strong>Camera motion and viewpoint variation</strong>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <!--/  Camera motion and Viewpoint variation. -->
+
+  </div>
+</section>
+
 
 
 <script>
