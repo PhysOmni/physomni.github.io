@@ -57,6 +57,7 @@
             position: relative;
             width: 100vw;
             min-height: 100vh;
+            min-height: 100svh;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -345,6 +346,63 @@
             position: relative;
         }
 
+        /* Sticky sub-nav */
+        .sub-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(14px);
+            -webkit-backdrop-filter: saturate(180%) blur(14px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .sub-nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.6rem 1rem;
+            display: flex;
+            gap: 0.25rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .sub-nav-inner::-webkit-scrollbar { display: none; }
+
+        .sub-nav a {
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--light-text-muted);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+        }
+
+        .sub-nav a:hover {
+            color: var(--primary-dark);
+            background: rgba(139, 92, 246, 0.08);
+        }
+
+        .sub-nav a.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+        }
+
+        /* Reveal-on-scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .section {
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -410,6 +468,12 @@
             margin: 1rem 0;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             display: block;
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .framework-image:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.14);
         }
 
         /* Two-figure side-by-side layout */
@@ -433,6 +497,12 @@
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             display: block;
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .figure-pair img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.14);
         }
 
         .figure-pair figcaption {
@@ -695,6 +765,59 @@
             .section-title { font-size: 1.6rem; }
             .compare-label { font-size: 0.65rem; padding: 0.18rem 0.5rem; }
         }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 0, 20, 0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            cursor: zoom-out;
+            padding: 2rem;
+        }
+        .lightbox.active { display: flex; animation: lbFade 0.25s ease; }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 80px rgba(139, 92, 246, 0.35);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.4rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        @keyframes lbFade {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Respect users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .video-row { animation: none !important; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -706,47 +829,47 @@
     <div class="video-wall">
         <!-- Row 1 - scrolls left -->
         <div class="video-row">
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_apple_1.00_50_2.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_apple_1.00_50_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
             <!-- duplicate -->
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_apple_1.00_50_2.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_apple_1.00_50_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
         </div>
 
         <!-- Row 2 - scrolls right -->
         <div class="video-row">
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_marbles_1.00_50_2.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_brick_1.00_50_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_billiards_1.00_10_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_strawberry_1.00_25_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_marbles_1.00_50_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_brick_1.00_50_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_billiards_1.00_10_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_strawberry_1.00_25_2.mp4" type="video/mp4"></video></div>
             <!-- duplicate -->
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_marbles_1.00_50_2.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_brick_1.00_50_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_billiards_1.00_10_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_strawberry_1.00_25_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_marbles_1.00_50_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_brick_1.00_50_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_billiards_1.00_10_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_strawberry_1.00_25_2.mp4" type="video/mp4"></video></div>
         </div>
 
         <!-- Row 3 - scrolls left -->
         <div class="video-row">
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_toys_1.00_25_4.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_camera_1.00_5_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_box_row.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_chairs_1.00_50_4.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_avocado_1.00_50_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_toys_1.00_25_4.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_camera_1.00_5_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_box_row.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_chairs_1.00_50_4.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_avocado_1.00_50_2.mp4" type="video/mp4"></video></div>
             <!-- duplicate -->
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_toys_1.00_25_4.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_camera_1.00_5_3.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_box_row.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_chairs_1.00_50_4.mp4" type="video/mp4"></video></div>
-            <div class="video-cell"><video autoplay muted loop playsinline><source src="./static/videos/test_demo/multi_s/rendered_avocado_1.00_50_2.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_toys_1.00_25_4.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_camera_1.00_5_3.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_box_row.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_chairs_1.00_50_4.mp4" type="video/mp4"></video></div>
+            <div class="video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_avocado_1.00_50_2.mp4" type="video/mp4"></video></div>
         </div>
     </div>
 
@@ -799,8 +922,22 @@
      ============================================ -->
 <main class="main-content">
 
+    <!-- Sticky sub-nav -->
+    <nav class="sub-nav" id="sub-nav">
+        <div class="sub-nav-inner">
+            <a href="#abstract">Abstract</a>
+            <a href="#motivation">Motivation</a>
+            <a href="#method">Framework</a>
+            <a href="#comparisons">Comparisons</a>
+            <a href="#scene-alignment">Scene Alignment</a>
+            <a href="#perspective">Perspective</a>
+            <a href="#wondertrace">WonderTrace</a>
+            <a href="#citation">BibTeX</a>
+        </div>
+    </nav>
+
     <!-- Teaser -->
-    <section class="section" id="teaser">
+    <section class="section reveal" id="teaser">
         <div class="teaser-container">
             <video id="teaser-video" autoplay muted loop playsinline>
                 <source src="./static/videos/teaser.mp4" type="video/mp4">
@@ -812,7 +949,7 @@
     </section>
 
     <!-- Abstract -->
-    <section class="section" id="abstract">
+    <section class="section reveal" id="abstract">
         <h2 class="section-title">Abstract</h2>
         <p class="abstract-text">
             Recent generative video models achieve impressive visual quality but remain constrained by limited physical consistency and controllability.
@@ -830,7 +967,7 @@
     </section>
 
     <!-- Motivation -->
-    <section class="section" id="motivation">
+    <section class="section reveal" id="motivation">
         <h2 class="section-title">Motivation</h2>
         <div class="teaser-container">
             <video autoplay muted loop playsinline>
@@ -849,7 +986,7 @@
     </section>
 
     <!-- Method -->
-    <section class="section" id="method">
+    <section class="section reveal" id="method">
         <h2 class="section-title">Framework Overview</h2>
         <img src="./static/images/pipeline.jpg" alt="TelePhysics Framework Pipeline" class="framework-image">
         <p class="image-caption">
@@ -862,7 +999,7 @@
     </section>
 
     <!-- Qualitative Comparisons -->
-    <section class="section" id="comparisons">
+    <section class="section reveal" id="comparisons">
         <h2 class="section-title">Qualitative Comparisons</h2>
         <p class="image-caption" style="margin-top: -0.5rem; margin-bottom: 1.5rem;">
             Comparison with state-of-the-art video generation models. The input includes an image, a motion prompt, and a text prompt.
@@ -881,13 +1018,13 @@
                     </div>
                     <div class="compare-grid">
                         <div class="compare-item"><span class="compare-label">Input Image</span><img src="./static/images/rendered_domino_1.00_50_4.jpg" alt="Input"></div>
-                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video autoplay muted playsinline><source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video autoplay muted playsinline><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video autoplay muted playsinline><source src="./static/videos/physctrl_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video autoplay muted playsinline><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video autoplay muted playsinline><source src="./static/videos/veo_3_1_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video autoplay muted playsinline><source src="./static/videos/wan_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video autoplay muted playsinline><source src="./static/videos/wan_14b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video muted playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video muted playsinline preload="metadata"><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video muted playsinline preload="metadata"><source src="./static/videos/physctrl_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video muted playsinline preload="metadata"><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video muted playsinline preload="metadata"><source src="./static/videos/veo_3_1_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_5b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_14b_demo/multi_s/rendered_domino_1.00_50_4.mp4" type="video/mp4"></video></div>
                     </div>
                 </div>
 
@@ -901,13 +1038,13 @@
                     </div>
                     <div class="compare-grid">
                         <div class="compare-item"><span class="compare-label">Input Image</span><img src="./static/images/rendered_scene_10_1.00_50_1.jpg" alt="Input"></div>
-                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video autoplay muted playsinline><source src="./static/videos/test_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video autoplay muted playsinline><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video autoplay muted playsinline><source src="./static/videos/physctrl_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video autoplay muted playsinline><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video autoplay muted playsinline><source src="./static/videos/veo_3_1_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video autoplay muted playsinline><source src="./static/videos/wan_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video autoplay muted playsinline><source src="./static/videos/wan_14b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video muted playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video muted playsinline preload="metadata"><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video muted playsinline preload="metadata"><source src="./static/videos/physctrl_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video muted playsinline preload="metadata"><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video muted playsinline preload="metadata"><source src="./static/videos/veo_3_1_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_5b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_14b_demo/multi_s/rendered_scene_10_1.00_50_1.mp4" type="video/mp4"></video></div>
                     </div>
                 </div>
 
@@ -921,13 +1058,13 @@
                     </div>
                     <div class="compare-grid">
                         <div class="compare-item"><span class="compare-label">Input Image</span><img src="./static/images/rendered_bowl_1.00_10_0.jpg" alt="Input"></div>
-                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video autoplay muted playsinline><source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video autoplay muted playsinline><source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video autoplay muted playsinline><source src="./static/videos/physctrl_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video autoplay muted playsinline><source src="./static/videos/sora_2_pro_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video autoplay muted playsinline><source src="./static/videos/veo_3_1_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video autoplay muted playsinline><source src="./static/videos/wan_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video autoplay muted playsinline><source src="./static/videos/wan_14b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video muted playsinline preload="metadata"><source src="./static/videos/test_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video muted playsinline preload="metadata"><source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video muted playsinline preload="metadata"><source src="./static/videos/physctrl_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video muted playsinline preload="metadata"><source src="./static/videos/sora_2_pro_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video muted playsinline preload="metadata"><source src="./static/videos/veo_3_1_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_5b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_14b_demo/multi_d/rendered_bowl_1.00_10_0.mp4" type="video/mp4"></video></div>
                     </div>
                 </div>
 
@@ -941,13 +1078,13 @@
                     </div>
                     <div class="compare-grid">
                         <div class="compare-item"><span class="compare-label">Input Image</span><img src="./static/images/rendered_chair_toy_05.jpg" alt="Input"></div>
-                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video autoplay muted playsinline><source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video autoplay muted playsinline><source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video autoplay muted playsinline><source src="./static/videos/physctrl_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video autoplay muted playsinline><source src="./static/videos/sora_2_pro_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video autoplay muted playsinline><source src="./static/videos/veo_3_1_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video autoplay muted playsinline><source src="./static/videos/wan_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video autoplay muted playsinline><source src="./static/videos/wan_14b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video muted playsinline preload="metadata"><source src="./static/videos/test_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video muted playsinline preload="metadata"><source src="./static/videos/cogvideo_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video muted playsinline preload="metadata"><source src="./static/videos/physctrl_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video muted playsinline preload="metadata"><source src="./static/videos/sora_2_pro_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video muted playsinline preload="metadata"><source src="./static/videos/veo_3_1_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_5b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_14b_demo/multi_d/rendered_chair_toy_05.mp4" type="video/mp4"></video></div>
                     </div>
                 </div>
 
@@ -961,13 +1098,13 @@
                     </div>
                     <div class="compare-grid">
                         <div class="compare-item"><span class="compare-label">Input Image</span><img src="./static/images/rendered_whale_shark_1.00_25_3.jpg" alt="Input"></div>
-                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video autoplay muted playsinline><source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video autoplay muted playsinline><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video autoplay muted playsinline><source src="./static/videos/physctrl_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video autoplay muted playsinline><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video autoplay muted playsinline><source src="./static/videos/veo_3_1_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video autoplay muted playsinline><source src="./static/videos/wan_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video autoplay muted playsinline><source src="./static/videos/wan_14b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video muted playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video muted playsinline preload="metadata"><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video muted playsinline preload="metadata"><source src="./static/videos/physctrl_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video muted playsinline preload="metadata"><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video muted playsinline preload="metadata"><source src="./static/videos/veo_3_1_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_5b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_14b_demo/multi_s/rendered_whale_shark_1.00_25_3.mp4" type="video/mp4"></video></div>
                     </div>
                 </div>
 
@@ -981,13 +1118,13 @@
                     </div>
                     <div class="compare-grid">
                         <div class="compare-item"><span class="compare-label">Input Image</span><img src="./static/images/rendered_orange_1.00_5_2.jpg" alt="Input"></div>
-                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video autoplay muted playsinline><source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video autoplay muted playsinline><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video autoplay muted playsinline><source src="./static/videos/physctrl_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video autoplay muted playsinline><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video autoplay muted playsinline><source src="./static/videos/veo_3_1_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video autoplay muted playsinline><source src="./static/videos/wan_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
-                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video autoplay muted playsinline><source src="./static/videos/wan_14b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label is-ours">Ours</span><video muted playsinline preload="metadata"><source src="./static/videos/test_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">CogVideoX1.5</span><video muted playsinline preload="metadata"><source src="./static/videos/cogvideo_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">PhysCtrl</span><video muted playsinline preload="metadata"><source src="./static/videos/physctrl_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Sora2-pro</span><video muted playsinline preload="metadata"><source src="./static/videos/sora_2_pro_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Veo3.1</span><video muted playsinline preload="metadata"><source src="./static/videos/veo_3_1_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-5B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_5b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
+                        <div class="compare-item"><span class="compare-label">Wan2.2-A14B</span><video muted playsinline preload="metadata"><source src="./static/videos/wan_14b_demo/multi_s/rendered_orange_1.00_5_2.mp4" type="video/mp4"></video></div>
                     </div>
                 </div>
 
@@ -1006,7 +1143,7 @@
     </section>
 
     <!-- Scene Alignment (with AGMF) -->
-    <section class="section" id="scene-alignment">
+    <section class="section reveal" id="scene-alignment">
         <h2 class="section-title">Scene Alignment</h2>
         <p class="image-caption" style="margin-top: -0.5rem; margin-bottom: 1.2rem;">
             To resolve the spatial misalignment introduced by egocentric reconstruction, we map all reconstructed meshes into a unified world coordinate system anchored to a canonical ground plane.
@@ -1035,7 +1172,7 @@
     </section>
 
     <!-- Perspective Alignment -->
-    <section class="section" id="perspective">
+    <section class="section reveal" id="perspective">
         <h2 class="section-title">Perspective Alignment</h2>
 
         <img src="./static/images/loop.jpg" alt="Differentiable rendering pipeline for explicit camera pose estimation" class="framework-image">
@@ -1054,7 +1191,7 @@
     </section>
 
     <!-- WonderTrace background expansion -->
-    <section class="section" id="wondertrace">
+    <section class="section reveal" id="wondertrace">
         <h2 class="section-title">WonderTrace</h2>
         <img src="./static/images/surround_diagrampptx.jpg" alt="Illustration of camera motion and viewpoint variation" class="framework-image">
         <p class="image-caption">
@@ -1065,7 +1202,7 @@
     </section>
 
     <!-- BibTeX -->
-    <section class="section" id="citation">
+    <section class="section reveal" id="citation">
         <h2 class="section-title">BibTeX</h2>
         <div class="citation-block">
             <pre id="citation-text">@misc{zhang2026telephysicsphysicsgroundedmultiobjectscene,
@@ -1083,6 +1220,12 @@
         </div>
     </section>
 </main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="lightbox-close" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+    <img id="lightbox-img" alt="">
+</div>
 
 
 <!-- ============================================
@@ -1188,6 +1331,71 @@
 
         document.querySelectorAll('main video, #teaser').forEach(video => {
             observer.observe(video);
+        });
+
+        // Hero wall videos: only the first ~half stay actively playing once off-screen
+        const heroVideos = document.querySelectorAll('.video-wall video');
+        const heroVidObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.play().catch(() => {});
+                else entry.target.pause();
+            });
+        }, { threshold: 0 });
+        heroVideos.forEach(v => heroVidObserver.observe(v));
+
+        // ── Reveal-on-scroll for sections ───────────────────
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ── Sticky sub-nav active link tracking ─────────────
+        const navLinks = document.querySelectorAll('.sub-nav a');
+        const navTargets = Array.from(navLinks)
+            .map(a => document.querySelector(a.getAttribute('href')))
+            .filter(Boolean);
+
+        const navObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const id = entry.target.id;
+                navLinks.forEach(a => {
+                    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+                });
+            });
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+        navTargets.forEach(t => navObserver.observe(t));
+
+        // ── Lightbox for figures ────────────────────────────
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+        function openLightbox(src, alt) {
+            lightboxImg.src = src;
+            lightboxImg.alt = alt || '';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            lightboxImg.src = '';
+        }
+
+        document.querySelectorAll('.framework-image, .figure-pair img, .teaser-container img').forEach(img => {
+            img.addEventListener('click', () => openLightbox(img.src, img.alt));
+        });
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox || e.target === lightboxClose || lightboxClose.contains(e.target)) closeLightbox();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
         });
     });
 </script>
