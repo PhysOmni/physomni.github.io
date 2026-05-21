@@ -23,6 +23,19 @@
 
     <link rel="icon" href="./static/images/log.svg">
 
+    <!-- Apply saved theme before paint to avoid flash -->
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (saved === 'dark' || (!saved && prefersDark)) {
+                    document.documentElement.classList.add('pre-dark');
+                }
+            } catch(e) {}
+        })();
+    </script>
+
     <style>
         :root {
             --primary: #8b5cf6;
@@ -38,7 +51,34 @@
             --light-bg-alt: #f8fafc;
             --light-text: #1e293b;
             --light-text-muted: #64748b;
+
+            /* Sub-nav glass background (theme-aware) */
+            --subnav-bg: rgba(255, 255, 255, 0.85);
+            --subnav-border: rgba(0, 0, 0, 0.06);
+            --code-bg: rgba(0, 0, 0, 0.04);
         }
+
+        /* Dark theme overrides the "light" content tokens */
+        body.dark,
+        html.pre-dark body {
+            --light-bg: #07071a;
+            --light-bg-alt: #101028;
+            --light-text: #f1f5f9;
+            --light-text-muted: #a3acc2;
+            --subnav-bg: rgba(10, 10, 31, 0.85);
+            --subnav-border: rgba(255, 255, 255, 0.06);
+            --code-bg: rgba(255, 255, 255, 0.06);
+        }
+        body.dark .citation-block { border-color: rgba(255, 255, 255, 0.08); }
+        body.dark .comparison-group { border-color: rgba(255, 255, 255, 0.06); }
+        body.dark .prompt-tag { background: var(--light-bg); border-color: rgba(139, 92, 246, 0.35); color: var(--primary-light); }
+        body.dark .compare-item { background: #050514; }
+        body.dark .slider-btn { background: var(--light-bg-alt); border-color: rgba(255, 255, 255, 0.1); color: var(--primary-light); }
+        body.dark .slider-btn:hover { color: white; }
+        body.dark .footer { border-top-color: rgba(255, 255, 255, 0.06); }
+        body.dark .footer a { color: var(--primary-light) !important; }
+        body.dark .image-caption code,
+        body.dark .figure-pair figcaption code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; color: var(--primary-light); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -344,17 +384,56 @@
         .main-content {
             background: var(--light-bg);
             position: relative;
+            transition: background 0.3s ease;
         }
+
+        /* Floating theme toggle */
+        .theme-toggle {
+            position: fixed;
+            right: 1.4rem;
+            bottom: 1.4rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            z-index: 60;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease, color 0.3s ease;
+        }
+        .theme-toggle:hover {
+            transform: translateY(-2px) rotate(-10deg);
+            box-shadow: 0 12px 32px rgba(139, 92, 246, 0.3);
+        }
+        body.dark .theme-toggle {
+            background: linear-gradient(135deg, rgba(20, 20, 45, 0.95), rgba(10, 10, 31, 0.95));
+            border-color: rgba(167, 139, 250, 0.35);
+            color: #fbbf24;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+        .theme-toggle .icon-sun  { display: none; }
+        .theme-toggle .icon-moon { display: block; }
+        body.dark .theme-toggle .icon-sun  { display: block; }
+        body.dark .theme-toggle .icon-moon { display: none; }
 
         /* Sticky sub-nav */
         .sub-nav {
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--subnav-bg);
             backdrop-filter: saturate(180%) blur(14px);
             -webkit-backdrop-filter: saturate(180%) blur(14px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid var(--subnav-border);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .sub-nav-inner {
@@ -1227,6 +1306,12 @@
     <img id="lightbox-img" alt="">
 </div>
 
+<!-- Theme toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+    <i class="bi bi-moon-stars-fill icon-moon"></i>
+    <i class="bi bi-sun-fill icon-sun"></i>
+</button>
+
 
 <!-- ============================================
      SCRIPTS
@@ -1244,6 +1329,20 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+        // ── Dark mode toggle ────────────────────────────────
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        // Sync the pre-paint flag onto body so JS can flip cleanly
+        if (html.classList.contains('pre-dark')) {
+            document.body.classList.add('dark');
+            html.classList.remove('pre-dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            const nowDark = !document.body.classList.contains('dark');
+            document.body.classList.toggle('dark', nowDark);
+            try { localStorage.setItem('theme', nowDark ? 'dark' : 'light'); } catch(e) {}
+        });
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
