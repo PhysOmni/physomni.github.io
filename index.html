@@ -247,19 +247,29 @@
         .affiliations sup { color: var(--accent); margin-right: 2px; }
 
         .conference-tag {
-            display: inline-block;
-            padding: 0.35rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 1.1rem;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(167, 139, 250, 0.5);
+            border: 1px solid rgba(251, 191, 36, 0.55);
             border-radius: 30px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--primary-light);
-            background: rgba(139, 92, 246, 0.08);
+            color: #fbbf24;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.14), rgba(217, 119, 6, 0.10));
             backdrop-filter: blur(10px);
+            box-shadow: 0 6px 22px rgba(251, 191, 36, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             animation: fadeInUp 1s ease-out backwards;
+        }
+
+        .conference-tag .accept-star {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
         }
 
         .hero-actions {
@@ -955,6 +965,10 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
+        <span class="conference-tag">
+            <i class="bi bi-star-fill accept-star"></i>
+            Accepted at ACM MM 2026
+        </span>
         <h1 class="hero-title">
             <span class="highlight">TelePhysics</span>
         </h1>
