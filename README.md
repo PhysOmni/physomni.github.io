@@ -1,1 +1,1 @@
-This is the repository that contains source code for the [TelePhyisics Website](https://telephysics.github.io).
+This is the repository that contains source code for the [PhysOmni Website](https://physomni.github.io).

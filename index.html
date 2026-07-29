@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="TelePhysics: Physics-Grounded Multi-Object Scene Generation from a Single Image with Real-Time Interaction">
-    <meta property="og:title" content="TelePhysics"/>
+    <meta name="description" content="PhysOmni: Physics-Grounded Multi-Object Scene Generation from a Single Image with Real-Time Interaction">
+    <meta property="og:title" content="PhysOmni"/>
     <meta property="og:description" content="Physics-Grounded Multi-Object Scene Generation from a Single Image with Real-Time Interaction."/>
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
-    <meta name="keywords" content="TelePhysics, Physics-based Vision, 3D Scene Generation, Real-time Rendering, Physical Simulation">
+    <meta name="keywords" content="PhysOmni, Physics-based Vision, 3D Scene Generation, Real-time Rendering, Physical Simulation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>TelePhysics: Physics-Grounded Multi-Object Scene Generation from a Single Image with Real-Time Interaction</title>
+    <title>PhysOmni: Physics-Grounded Multi-Object Scene Generation from a Single Image with Real-Time Interaction</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -966,7 +966,7 @@
 
     <div class="hero-content">
         <h1 class="hero-title">
-            <span class="highlight">TelePhysics</span>
+            <span class="highlight">PhysOmni</span>
         </h1>
         <span class="conference-tag">
             <i class="bi bi-star-fill accept-star"></i>
@@ -1002,7 +1002,7 @@
             <a href="https://arxiv.org/abs/2605.20290" target="_blank" class="btn btn-outline">
                 <i class="ai ai-arxiv"></i> arXiv
             </a>
-            <a href="https://github.com/xinzhang007/TelePhysics" target="_blank" class="btn btn-outline">
+            <a href="https://github.com/xinzhang007/PhysOmni" target="_blank" class="btn btn-outline">
                 <i class="bi bi-github"></i> Code
             </a>
         </div>
@@ -1036,7 +1036,7 @@
                 <source src="./static/videos/teaser.mp4" type="video/mp4">
             </video>
             <p class="image-caption centered">
-                <strong>TelePhysics</strong> is a unified, training-free framework designed to facilitate holistic 3D scene generation and physically grounded video synthesis from a single input image. The video showcases interactions among multiple objects across diverse scenes.
+                <strong>PhysOmni</strong> is a unified, training-free framework designed to facilitate holistic 3D scene generation and physically grounded video synthesis from a single input image. The video showcases interactions among multiple objects across diverse scenes.
             </p>
         </div>
     </section>
@@ -1048,14 +1048,14 @@
             Recent generative video models achieve impressive visual quality but remain constrained by limited physical consistency and controllability.
             Existing video generation methods provide minimal physical control, and single-image-to-3D conversion approaches often suffer from object interpenetration.
             Furthermore, physics-based scene-level 3D generation methods exhibit spatial misalignment, stylized artifacts, and inconsistencies with the input data, restricting their use in realistic interactive video synthesis.
-            We propose <strong>TelePhysics</strong>, a training-free framework that converts a single image into a physically consistent and controllable video through holistic scene-level 3D reconstruction.
-            By representing the full scene geometry in a unified spatial coordinate system, TelePhysics resolves object penetration and alignment ambiguity. Unlike prior methods, this formulation enables accurate scene-level multi-object interactions and introduces richer, complex control types for advanced mechanics-based manipulation.
-            By <strong>decoupling simulation from rendering</strong>, TelePhysics bypasses latency-heavy priors, achieving <strong>real-time physical interaction previews</strong> while preserving photorealistic visual fidelity.
-            Experimental results demonstrate that TelePhysics substantially outperforms prior methods in physical fidelity, spatial coherence, and controllability.
+            We propose <strong>PhysOmni</strong>, a training-free framework that converts a single image into a physically consistent and controllable video through holistic scene-level 3D reconstruction.
+            By representing the full scene geometry in a unified spatial coordinate system, PhysOmni resolves object penetration and alignment ambiguity. Unlike prior methods, this formulation enables accurate scene-level multi-object interactions and introduces richer, complex control types for advanced mechanics-based manipulation.
+            By <strong>decoupling simulation from rendering</strong>, PhysOmni bypasses latency-heavy priors, achieving <strong>real-time physical interaction previews</strong> while preserving photorealistic visual fidelity.
+            Experimental results demonstrate that PhysOmni substantially outperforms prior methods in physical fidelity, spatial coherence, and controllability.
         </p>
 
         <div class="teaser-container" style="margin-top: 2rem;">
-            <img src="./static/images/teaser.jpg" alt="TelePhysics teaser">
+            <img src="./static/images/teaser.jpg" alt="PhysOmni teaser">
         </div>
     </section>
 
@@ -1081,9 +1081,9 @@
     <!-- Method -->
     <section class="section reveal" id="method">
         <h2 class="section-title">Framework Overview</h2>
-        <img src="./static/images/pipeline.jpg" alt="TelePhysics Framework Pipeline" class="framework-image">
+        <img src="./static/images/pipeline.jpg" alt="PhysOmni Framework Pipeline" class="framework-image">
         <p class="image-caption">
-            <strong>Overview of the TelePhysics framework.</strong>
+            <strong>Overview of the PhysOmni framework.</strong>
             (a) Given a single input image and user controls, the pipeline applies <em>Scene Perception</em> to reconstruct 3D object meshes and synthesize a background environment.
             (b) These components are grounded in a unified global coordinate system through <em>Scene Alignment</em> to ensure geometric consistency, while a VLM-driven parameter estimation module concurrently deduces the physical properties of each entity.
             (c) Guided by these semantic priors, the <em>Physics Simulation</em> stage&mdash;built on Genesis with rigid-body, MPM, and PBD solvers chosen per material type&mdash;computes physically compliant trajectories and collision responses.
@@ -1298,8 +1298,8 @@
     <section class="section reveal" id="citation">
         <h2 class="section-title">BibTeX</h2>
         <div class="citation-block">
-            <pre id="citation-text">@misc{zhang2026telephysicsphysicsgroundedmultiobjectscene,
-      title={TelePhysics: Physics-Grounded Multi-Object Scene Generation from a Single Image with Real-Time Interaction},
+            <pre id="citation-text">@misc{zhang2026physomniphysicsgroundedmultiobjectscene,
+      title={PhysOmni: Physics-Grounded Multi-Object Scene Generation from a Single Image with Real-Time Interaction},
       author={Xin Zhang and Yabo Chen and Yijie Fang and Wanying Qu and Haibin Huang and Chi Zhang and Feng Xu and Xuelong Li},
       year={2026},
       eprint={2605.20290},
