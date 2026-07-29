@@ -246,32 +246,6 @@
 
         .affiliations sup { color: var(--accent); margin-right: 2px; }
 
-        .conference-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.45rem 1.1rem;
-            margin: 0.4rem 0 1.4rem;
-            border: 1px solid rgba(251, 191, 36, 0.55);
-            border-radius: 30px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fbbf24;
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.14), rgba(217, 119, 6, 0.10));
-            backdrop-filter: blur(10px);
-            box-shadow: 0 6px 22px rgba(251, 191, 36, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            animation: fadeInUp 1s ease-out backwards;
-        }
-
-        .conference-tag .accept-star {
-            color: #fbbf24;
-            font-size: 0.9rem;
-            filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
-        }
-
         .hero-actions {
             display: flex;
             gap: 1rem;
@@ -968,10 +942,7 @@
         <h1 class="hero-title">
             <span class="highlight">PhysOmni</span>
         </h1>
-        <span class="conference-tag">
-            <i class="bi bi-star-fill accept-star"></i>
-            Accepted at ACM MM 2026
-        </span>
+        <div>ACM MM 2026</div>
         <p class="hero-subtitle">
             Physics-Grounded Multi-Object Scene Generation from a Single Image 
             <br>with Real-Time Interaction
